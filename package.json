@@ -6,10 +6,23 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "jest":{
+    "testMatch": [
+      "**/tests/**/*.[jt]s?(x)",
+      "**/?(*.)+(spec|test).[jt]s?(x)"
+    ],
+    "reporters": [
+      "default",
+      "jest-html-reporters"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "jest": "^27.0.3",
+    "jest-html-reporters": "^2.1.6",
+    "jest-playwright-preset": "^1.6.0",
     "playwright": "^1.11.1"
   }
 }

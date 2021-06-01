@@ -39,6 +39,7 @@ const handleCalc = await body.$("iframe#myFrame");
 const calcBody = await handleCalc.contentFrame();
 
 await calcBody.waitForSelector("//*[@id='select_79']");
+await calcBody.click("//*[@id='select_79']");
 
 
 // const secondFrame = await body.$("iframe#myFrame")
