@@ -40,15 +40,3 @@ const calcBody = await handleCalc.contentFrame();
 
 await calcBody.waitForSelector("//*[@id='select_79']");
 await calcBody.click("//*[@id='select_79']");
-
-
-// const secondFrame = await body.$("iframe#myFrame")
-
-// const newFrame = await body.$("iframe");
-// const newBody = await newFrame.contentFrame();
-
-// console.log(body);
-
-// await body.click("//*[@id='mainForm']/div[2]/div/md-card/md-card-content/div/div[1]/form/div[3]/div[1]/md-input-container");
-
-// await browser.close();
