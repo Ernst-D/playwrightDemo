@@ -1,7 +1,7 @@
-import BasePage from "./base.page.mjs";
+import BasePage from "./base.page.js";
 
 class GcpMain extends BasePage {
-    constructor(name, url){
+    constructor(page, url){
         this.page = page;
         this.url = url;
     }
@@ -19,3 +19,4 @@ class GcpMain extends BasePage {
 
     get Url(){return this.url}
 }
+export default GcpMain;
