@@ -12,3 +12,4 @@ jobs:
           steps:
             - run: npm install
       - run: npx playwright --version
+      - run: node ./demos/mobile.mjs 
