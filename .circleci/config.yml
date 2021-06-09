@@ -8,6 +8,7 @@ jobs:
       tag: '14.16.1'
     steps:
       - checkout
+      - run: sudo apt-get install gstreamer1.0-libav
       - node/with-cache:
           steps:
             - run: npm install
