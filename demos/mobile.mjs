@@ -5,8 +5,9 @@ const browser =  await webkit.launch({
 })
 
 const context =  await browser.newContext({
-    ...devices['iPad Pro 11 landscape']
+    ...devices["iPhone 11 Pro"]
 })
 const page = await context.newPage();
-await page.goto("https://theverge.com")
+await page.goto("https://www.whatismybrowser.com/detect/what-is-my-user-agent")
+await page.screenshot({ path: "example.png" });
 await browser.close();
