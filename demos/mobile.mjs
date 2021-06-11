@@ -1,7 +1,7 @@
 import { chromium, devices, firefox, webkit } from "playwright";
 
 const browser =  await webkit.launch({
-    headless:false
+    headless:true
 })
 
 const context =  await browser.newContext({
