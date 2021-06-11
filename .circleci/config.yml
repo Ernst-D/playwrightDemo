@@ -13,26 +13,26 @@ jobs:
       - run:
             name: Install packages for correct work with Playwright
             command: |
-              sudo apt-get install libwoff1
-              sudo apt-get install libopus0
-              sudo apt-get install libwebp6
-              sudo apt-get install libwebpdemux2
-              sudo apt-get install libenchant1c2a
-              sudo apt-get install libgudev-1.0-0
-              sudo apt-get install libsecret-1-0
-              sudo apt-get install libhyphen0
-              sudo apt-get install libgdk-pixbuf2.0-0
-              sudo apt-get install libegl1
-              sudo apt-get install libgles2
-              sudo apt-get install libevent-2.1-6
-              sudo apt-get install libnotify4
-              sudo apt-get install libxslt1.1
-              sudo apt-get install libvpx5
-              sudo apt-get install gstreamer1.0-gl
-              sudo apt-get install gstreamer1.0-plugins-base
-              sudo apt-get install gstreamer1.0-plugins-good
-              sudo apt-get install gstreamer1.0-plugins-bad
-              sudo apt-get install libgbm1
+              sudo apt-get -y install libwoff1
+              sudo apt-get -y install libopus0
+              sudo apt-get -y install libwebp6
+              sudo apt-get -y install libwebpdemux2
+              sudo apt-get -y install libenchant1c2a
+              sudo apt-get -y install libgudev-1.0-0
+              sudo apt-get -y install libsecret-1-0
+              sudo apt-get -y install libhyphen0
+              sudo apt-get -y install libgdk-pixbuf2.0-0
+              sudo apt-get -y install libegl1
+              sudo apt-get -y install libgles2
+              sudo apt-get -y install libevent-2.1-6
+              sudo apt-get -y install libnotify4
+              sudo apt-get -y install libxslt1.1
+              sudo apt-get -y install libvpx5
+              sudo apt-get -y install gstreamer1.0-gl
+              sudo apt-get -y install gstreamer1.0-plugins-base
+              sudo apt-get -y install gstreamer1.0-plugins-good
+              sudo apt-get -y install gstreamer1.0-plugins-bad
+              sudo apt-get -y install libgbm1
       - node/with-cache:
           steps:
             - run: npm install
