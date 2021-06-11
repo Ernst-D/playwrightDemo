@@ -11,7 +11,7 @@ jobs:
       - run:
             name: Install packages for correct work with Playwright
             command: |
-              sudo apt-get install libwoff1
+              sudo apt-get install libsoup-2.4.so.1
               sudo apt-get install libopus0
               sudo apt-get install libwebp6
               sudo apt-get install libwebpdemux2
