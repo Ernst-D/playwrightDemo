@@ -14,4 +14,4 @@ jobs:
             - run: npm install
             - run: npm install playwright
       - run: npx playwright --version
-      - run: node -v
+      - run: node ./demos/mobile.mjs
