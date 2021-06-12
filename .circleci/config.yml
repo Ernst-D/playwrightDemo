@@ -7,5 +7,8 @@ jobs:
     - image: mcr.microsoft.com/playwright:focal
     steps:
       - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
       - run: npx playwright --version
       - run: node ./demos/mobile.mjs
