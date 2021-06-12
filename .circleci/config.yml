@@ -13,25 +13,35 @@ jobs:
       - run:
             name: Install packages for correct work with Playwright
             command: |
-              sudo apt-get -y install libopus0
-              sudo apt-get -y install libwebp6
-              sudo apt-get -y install libwebpdemux2
-              sudo apt-get -y install libenchant1c2a
-              sudo apt-get -y install libgudev-1.0-0
-              sudo apt-get -y install libsecret-1-0
-              sudo apt-get -y install libhyphen0
-              sudo apt-get -y install libgdk-pixbuf2.0-0
-              sudo apt-get -y install libegl1
-              sudo apt-get -y install libgles2
-              sudo apt-get -y install libevent-2.1-6
-              sudo apt-get -y install libnotify4
-              sudo apt-get -y install libxslt1.1
-              sudo apt-get -y install libvpx5
-              sudo apt-get -y install gstreamer1.0-gl
-              sudo apt-get -y install gstreamer1.0-plugins-base
-              sudo apt-get -y install gstreamer1.0-plugins-good
-              sudo apt-get -y install gstreamer1.0-plugins-bad
-              sudo apt-get -y install libgbm1
+              sudo apt-get install libgtk-3-0\
+              libcairo2\
+              libegl1\
+              libnotify4\
+              libgdk-pixbuf2.0-0\
+              libvpx6\
+              libopus0\
+              libpango-1.0-0\
+              libharfbuzz0b\
+              libwoff1\
+              libharfbuzz-icu0\
+              gstreamer1.0-plugins-base\
+              libgstreamer-gl1.0-0\
+              gstreamer1.0-plugins-bad\
+              libjpeg-turbo8\
+              libopenjp2-7\
+              libwebpdemux2\
+              libwebp6\
+              libatk1.0-0\
+              libenchant1c2a\
+              libsecret-1-0\
+              libhyphen0\
+              libwayland-server0\
+              libwayland-egl1\
+              libxkbcommon0\
+              libepoxy0\
+              libatk-bridge2.0-0\
+              libgles2\
+              gstreamer1.0-libav
       - node/with-cache:
           steps:
             - run: npm install
