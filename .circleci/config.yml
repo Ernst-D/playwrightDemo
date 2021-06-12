@@ -3,22 +3,9 @@ orbs:
   node: circleci/node@1.1
 jobs:
   build:
-    executor:
-      name: node/default
-      tag: '14.16.1'
+    docker:
+    - image: mcr.microsoft.com/playwright:focal
     steps:
       - checkout
-      - run: 
-            command: sudo apt-get update
-      - run:
-            name: Install packages for correct work with Playwright
-            command: |
-              sudo apt-get install libgtk-3-0
-      - node/with-cache:
-          steps:
-            - run: npm install
-      - node/with-cache:
-          steps:
-            - run: npm install playwright
       - run: npx playwright --version
       - run: node ./demos/mobile.mjs
