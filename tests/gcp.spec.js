@@ -1,4 +1,5 @@
 const { chromium } = require("playwright");
+const {default: GcpMain} = require("../pages/gcp/main.page");
 
 let browser;
 let page;
@@ -9,7 +10,8 @@ describe("Test Suite",()=>{
         browser = await chromium.launch({ headless: false });
         const context = await browser.newContext();
         page = await context.newPage();
-        await page.goto("https://cloud.google.com/");
+        let gcp = new GcpMain(page);
+        await gcp.navigate("https://cloud.google.com")
     })
 
     afterAll(async () =>{
@@ -19,7 +21,6 @@ describe("Test Suite",()=>{
     })
 
     test("Test Case", async ()=>{
-
         await page.click('[placeholder="Search"]');
         await page.fill('[placeholder="Search"]', 'calculator');
         await page.press('[placeholder="Search"]', 'Enter');
