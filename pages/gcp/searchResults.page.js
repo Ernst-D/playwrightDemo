@@ -1,18 +1,24 @@
-class GcpMain {
+class SearchResults {
     constructor(page = null) {
         /**
          * @typedef {Promise<Page>} Page in the browser context
          */
         this.page = page;
     }
-    async navigate(url) {
-        await this.page.goto(url);
+    get cloudCalcLink() {return "text=Google Cloud Platform Pricing Calculator";}
+    
+    clickOnCalcLink = async () => {
+        await this.page.click(this.cloudCalcLink);
     }
-    async search() {
-        await this.page.click('[placeholder="Search"]');
-        await this.page.fill('[placeholder="Search"]', 'calculator');
-        await this.page.press('[placeholder="Search"]', 'Enter');
+    waitForCalcFrame = async () => {
+        await this.page.waitForSelector("devsite-iframe iframe");
+        const body = await this.firstFrame.contentFrame();
+
+        await body.waitForTimeout(10000);
+        await body.waitForSelector(this.secondFrame);
+
+        return body.$(this.secondFrame);
     }
 
 }
-export default GcpMain;
+export default SearchResults;

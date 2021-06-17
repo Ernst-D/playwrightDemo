@@ -5,12 +5,11 @@ class GcpMain {
          */
         this.page = page;
     }
-    async navigate(url) {
-        await this.page.goto(url);
-    }
-    async search() {
+
+    navigate = async (url) => { await this.page.goto(url);  }
+    search = async (stringToSearch) => {
         await this.page.click('[placeholder="Search"]');
-        await this.page.fill('[placeholder="Search"]', 'calculator');
+        await this.page.fill('[placeholder="Search"]', stringToSearch);
         await this.page.press('[placeholder="Search"]', 'Enter');
     }
 
