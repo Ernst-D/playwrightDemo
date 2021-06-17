@@ -1,8 +1,14 @@
-const { chromium } = require("playwright");
-const {default: GcpMain} = require("../pages/gcp/main.page");
+import { chromium } from "playwright";
+import CloudCalculator from "../pages/gcp/cloudCalc.page";
+import { default as GcpMain } from "../pages/gcp/main.page";
+import SearchResults from "../pages/gcp/searchResults.page";
 
 let browser;
 let page;
+
+let gcpMain;
+let gcpSearchResults;
+let gcpCalc;
 
 describe("Test Suite",()=>{
 
@@ -10,8 +16,8 @@ describe("Test Suite",()=>{
         browser = await chromium.launch({ headless: false });
         const context = await browser.newContext();
         page = await context.newPage();
-        let gcp = new GcpMain(page);
-        await gcp.navigate("https://cloud.google.com")
+        gcpMain = new GcpMain(page);
+        await gcpMain.navigate("https://cloud.google.com")
     })
 
     afterAll(async () =>{
@@ -20,21 +26,14 @@ describe("Test Suite",()=>{
         }
     })
 
-    test("Test Case", async ()=>{
-        await page.click('[placeholder="Search"]');
-        await page.fill('[placeholder="Search"]', 'calculator');
-        await page.press('[placeholder="Search"]', 'Enter');
-        await page.click('text=Google Cloud Platform Pricing Calculator');
-        await page.waitForSelector("devsite-iframe iframe");
-        const handle = await page.$('devsite-iframe iframe');
-        const body = await handle.contentFrame();
+    test("GCP Cloud Calc", async () => {
+        await gcpMain.search("calculator")
+       
+        gcpSearchResults = new SearchResults(page);
+        await gcpSearchResults.page.click(gcpSearchResults.cloudCalcLink)
 
-        await body.waitForTimeout(10000);
-        await body.waitForSelector("iframe#myFrame");
-
-        const handleCalc = await body.$("iframe#myFrame");
-        const calcBody = await handleCalc.contentFrame();
-
+        gcpCalc = new CloudCalculator(page);
+        const calcBody = await gcpCalc.waitForCalcFrame();
         await calcBody.waitForSelector("//*[@id='select_79']");
         await calcBody.click("//*[@id='select_79']");
 
