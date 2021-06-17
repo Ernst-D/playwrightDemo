@@ -7,10 +7,10 @@ class SearchResults {
     }
     get cloudCalcLink() {return "text=Google Cloud Platform Pricing Calculator";}
     
-    clickOnCalcLink = async () => {
+    async clickOnCalcLink(){
         await this.page.click(this.cloudCalcLink);
     }
-    waitForCalcFrame = async () => {
+    async waitForCalcFrame (){
         await this.page.waitForSelector("devsite-iframe iframe");
         const body = await this.firstFrame.contentFrame();
 
