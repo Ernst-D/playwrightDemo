@@ -4,6 +4,7 @@ class GcpMain {
          * @typedef {Promise<Page>} Page in the browser context
          */
         this.page = page;
+        Object.assign(GcpMain.prototype,basePageActions)
     }
 
     async navigate(url){ 

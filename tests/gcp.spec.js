@@ -19,7 +19,7 @@ describe("Test Suite",()=>{
         gcpMain = new GcpMain(page);        
         gcpCalc = new CloudCalculator(page);
         gcpSearchResults = new SearchResults(page);
-        await gcpMain.navigate("https://cloud.google.com");
+        await gcpMain.navigateToTheUrl(gcpMain.page,"https://cloud.google.com");
         // let locs = (await page.$$("#select_container_79  md-option")).pop()
     });
 
