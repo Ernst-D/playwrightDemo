@@ -1,3 +1,5 @@
+import { basePageActions } from "../../utils/mixins";
+
 class GcpMain {
     constructor(page = null) {
         /**
@@ -7,13 +9,15 @@ class GcpMain {
         Object.assign(GcpMain.prototype,basePageActions)
     }
 
+    get searchInput() {return "[placeholder='Search']"}
+
     async navigate(url){ 
         await this.page.goto(url);  
     }
     async search (stringToSearch){
-        await this.page.click("[placeholder='Search']");
-        await this.page.fill("[placeholder='Search']", stringToSearch);
-        await this.page.press("[placeholder='Search']", "Enter");
+        await this.page.click(this.searchInput);
+        await this.page.fill(this.searchInput, stringToSearch);
+        await this.page.press(this.searchInput, "Enter");
     }
 
 }

@@ -8,11 +8,26 @@ class CloudCalculator {
     get firstFrame() {return "devsite-iframe iframe";}
     get secondFrame() {return "iframe#myFrame";}
     get operatingSystem() {return "#select_78";}
-    get operatingSystemList() { return this.page.$$("#select_container_79  md-option");}
-    get selectOS() {return "#select_option_68";}
+    get osList(){
+        return {
+            free:"free",
+            windows:"win",
+            redHatEnterprise:"rhel",
+            redHatEnterpriseSap:"rhel-sap-ha",
+            sles:"sles",
+            slesSap12:"sles-sap-12",
+            slesSap15:"sles-sap-15",
+            sqlStandart:"sql-standart",
+            sqlWeb:"sql-web",
+            sqlEnterprise:"sql-enterprise"
+
+        }
+    }
     get machineClass() { return "#select_78"; }
 
-
+    selectOS(osName){
+        return `//div[@id='select_container_79']//*[@value='${osName}']`;
+    }
     async waitForCalcFrame(){
         await this.page.waitForSelector("devsite-iframe iframe");
         const handle = await this.page.$(this.firstFrame);
@@ -28,9 +43,8 @@ class CloudCalculator {
     async setUpInstance(calcBody){
         await calcBody.waitForSelector(this.operatingSystem);
         await calcBody.click(this.operatingSystem);
-        // frame.click: selector: expected string, got undefined
-        // await calcBody.click((await this.operatingSystemList).pop());
-        
+        await calcBody.click(this.selectOS(this.osList.sles))
+        await calcBody.waitForSelector(this.operatingSystem);       
 
     }
 }
