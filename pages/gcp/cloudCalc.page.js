@@ -7,7 +7,7 @@ class CloudCalculator {
     }
     get firstFrame() {return "devsite-iframe iframe";}
     get secondFrame() {return "iframe#myFrame";}
-    get operatingSystem() {return "#select_78";}
+    get operatingSystem() {return "[ng-model='listingCtrl.computeServer.os']";}
     get osList(){
         return {
             free:"free",
@@ -23,11 +23,24 @@ class CloudCalculator {
 
         }
     }
-    get machineClass() { return "#select_78"; }
+    get machineClass() { return "[ng-model='listingCtrl.computeServer.class']"; }
+    get machineClassList(){
+        return {
+            regular:"Regular",
+            preemptible:"Preemptible",
+        }
+    }
 
     selectOS(osName){
-        return `//div[@id='select_container_79']//*[@value='${osName}']`;
+        return `//*[@value='${osName}']`;
     }
+    selectmachineClass(machineClassName){
+        if(machineClassName == "Preemptible"){
+            return "#select_option_81"
+        }
+        return `text=${machineClassName}`;
+    }
+
     async waitForCalcFrame(){
         await this.page.waitForSelector("devsite-iframe iframe");
         const handle = await this.page.$(this.firstFrame);
@@ -41,10 +54,11 @@ class CloudCalculator {
     }
 
     async setUpInstance(calcBody){
-        await calcBody.waitForSelector(this.operatingSystem);
         await calcBody.click(this.operatingSystem);
         await calcBody.click(this.selectOS(this.osList.sles))
-        await calcBody.waitForSelector(this.operatingSystem);       
+        await calcBody.click(this.machineClass);
+        await calcBody.click(this.selectmachineClass(this.machineClassList.regular))
+        console.log("test");
 
     }
 }
