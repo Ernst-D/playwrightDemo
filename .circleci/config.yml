@@ -22,4 +22,5 @@ workflows:
       - build:
           filters:
             branches:
-              only: /ci\/.*/
+              only: 
+                - ci
