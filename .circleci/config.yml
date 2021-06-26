@@ -19,6 +19,9 @@ jobs:
             - nodeModules
       - run:
           name: "Install node"
+          command: nvm install 14.16.1
+      - run:
+          name: "Use node"
           command: nvm use 14.16.1
       - run:
           name: "Install project dependencies"
