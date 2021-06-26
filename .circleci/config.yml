@@ -10,15 +10,23 @@ jobs:
       size: "medium" # resource class, can be "medium", "large", "xlarge", "2xlarge", defaults to "medium" if not specified
       shell: powershell.exe
 
-    working_directory: C:\Users\circleci\project\HelloWorld
-
     steps:
       # Commands are run in a Windows virtual machine environment
-      - checkout
-      - run: nvm use 14.16.1
-      - node/with-cache:
-          steps:
-            - run: npm install
+      - checkout:
+          path: C:\Users\circleci\project
+      - restore_cache:
+          keys:
+            - nodeModules
+      - run:
+          name: "Install node"
+          command: nvm use 14.16.1
+      - run:
+          name: "Install project dependencies"
+          command: npm install
+      - save_cache:
+          paths:
+            - C:\Users\circleci\project\node_modules
+          key: nodeModules
       - run: npx playwright --version
       - run: node ./demos/mobile.mjs
 
