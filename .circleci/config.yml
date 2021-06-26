@@ -17,13 +17,6 @@ jobs:
       - restore_cache:
           keys:
             - pw
-      # - run:
-      #     name: "Install node"
-      #     command: nvm install 14.16.1
-      # - save_cache:
-      #     key: nodeNvm
-      #     paths:
-      #       - C:\ProgramData\nvm\v14.16.1
       - restore_cache:
           keys:
             - nodeNvm
@@ -37,8 +30,16 @@ jobs:
           key: pw
           paths:
             - C:\Users\circleci\AppData\Local\ms-playwright
-      - run: npx playwright --version
       - run: node ./demos/mobile.mjs
-
       - store_artifacts:
           path: ./example.png
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: 
+                - ci
