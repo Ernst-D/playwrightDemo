@@ -14,9 +14,9 @@ jobs:
       # Commands are run in a Windows virtual machine environment
       - checkout:
           path: C:\Users\circleci\project
-      - restore_cache:
-          keys:
-            - nodeModules
+      # - restore_cache:
+      #     keys:
+      #       - nodeModules
       - run:
           name: "Install node"
           command: nvm install 14.16.1
@@ -29,6 +29,7 @@ jobs:
       - save_cache:
           paths:
             - C:\Users\circleci\project\node_modules
+            - C:\Users\circleci\AppData\Local\ms-playwright
           key: nodeModules
       - run: npx playwright --version
       - run: node ./demos/mobile.mjs
