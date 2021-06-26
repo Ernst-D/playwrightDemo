@@ -1,26 +1,16 @@
-version: 2.1
-orbs:
-  node: circleci/node@1.1
-jobs:
-  build:
-    docker:
-    - image: mcr.microsoft.com/playwright:focal
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-      - run: npx playwright --version
-      - run: node ./demos/mobile.mjs
+version: 2.1 # Use version 2.1 to enable orb usage.
 
-      - store_artifacts:
-          path: ./example.png
-workflows:
-  version: 2
-  workflow:
-    jobs:
-      - build:
-          filters:
-            branches:
-              only: 
-                - ci
+orbs:
+  win: circleci/windows@2.2.0 # The Windows orb give you everything you need to start using the Windows executor.
+
+jobs:
+  build: # name of your job
+    executor:
+      name: win/default # executor type
+      size: "medium" # resource class, can be "medium", "large", "xlarge", "2xlarge", defaults to "medium" if not specified
+
+    steps:
+      # Commands are run in a Windows virtual machine environment
+      - checkout
+      - run: Write-Host 'Hello, Windows'
+      - run: node -v
