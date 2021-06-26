@@ -5,7 +5,8 @@ const browser =  await webkit.launch({
 })
 
 const context =  await browser.newContext({
-    ...devices["iPhone 11 Pro"]
+    ...devices["iPhone 11 Pro"],
+    ignoreHTTPSErrors: true
 })
 const page = await context.newPage();
 await page.goto("https://www.whatismybrowser.com/")
