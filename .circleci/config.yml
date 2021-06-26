@@ -16,7 +16,7 @@ jobs:
           path: C:\Users\circleci\project
       - restore_cache:
           keys:
-            - nodeModules
+            - pw
             - nodeNvm
       - run:
           name: "Install node"
@@ -33,9 +33,8 @@ jobs:
           command: npm install
       - save_cache:
           paths:
-            - C:\Users\circleci\project\node_modules
             - C:\Users\circleci\AppData\Local\ms-playwright
-          key: nodeModules
+          key: pw
       - run: npx playwright --version
       - run: node ./demos/mobile.mjs
 
