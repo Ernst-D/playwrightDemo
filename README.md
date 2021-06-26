@@ -1,4 +1,4 @@
-# playrightDemo
+# playwrightDemo
 
 main - main branch
 
