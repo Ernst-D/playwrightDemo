@@ -14,12 +14,17 @@ jobs:
       # Commands are run in a Windows virtual machine environment
       - checkout:
           path: C:\Users\circleci\project
-      # - restore_cache:
-      #     keys:
-      #       - nodeModules
+      - restore_cache:
+          keys:
+            - nodeModules
+            - nodeNvm
       - run:
           name: "Install node"
           command: nvm install 14.16.1
+      - save_cache:
+          paths:
+            - C:\ProgramData\nvm\v14.16.1
+          key: nodeNvm
       - run:
           name: "Use node"
           command: nvm use 14.16.1
