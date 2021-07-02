@@ -5,7 +5,8 @@
   "main": "test.js",
   "scripts": {
     "test": "jest --detectOpenHandles",
-    "playwright":"playwright"
+    "playwright": "playwright",
+    "pw-debug": "playwright debug npm run test"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,7 @@
     "@babel/preset-env": "^7.14.4",
     "@babel/register": "^7.13.16",
     "@babel/runtime": "^7.14.0",
+    "@tpoisseau/pattern-matching": "^1.0.5",
     "babel-jest": "^27.0.2",
     "command-line-args": "^5.1.1",
     "eslint": "^7.28.0",

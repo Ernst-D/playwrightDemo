@@ -1,3 +1,5 @@
+import pattern from "@tpoisseau/pattern-matching";
+
 class CloudCalculator {
     constructor(page = null) {
         /**
@@ -75,11 +77,23 @@ class CloudCalculator {
     selectOS(osName){
         return `//*[@value='${osName}']`;
     }
-    selectmachineClass(machineClassName){
+    machineClassValue(machineClassName){
         if(machineClassName == "Preemptible"){
             return "#select_option_81";
         }
         return `text=${machineClassName}`;
+    }
+    valueFromDropDown(valueName){
+        return `//*[@value='${valueName}']`; 
+    }
+    selectFromDropDown(dropDownName,option){
+        const result = pattern(dropDownName)
+        .match("os",()=>{return this.valueFromDropDown(option);})
+        .match("machineClass",()=>this.machineClassValue(option))
+        .match("machineFamily",()=>{return this.valueFromDropDown(option);})
+        .match("series",()=>{return this.valueFromDropDown(option);})
+        .exec();
+        return result;
     }
 
     async waitForCalcFrame(){
@@ -95,11 +109,14 @@ class CloudCalculator {
     }
 
     async setUpInstance(calcBody){
-        await calcBody.click(this.operatingSystem);
-        await calcBody.click(this.selectOS(this.osList.sles));
+        // await calcBody.click(this.operatingSystem);
+        // await calcBody.click(this.valueFromDropDown(this.osList.sles));
+        // await calcBody.click(this.machineClass);
+        // await calcBody.click(this.machineClassValue(this.machineClassList.regular));
+        // await calcBody.click(this.machineFamily);
+        // await calcBody.click(this.valueFromDropDown(this.machineFamilyList.GeneralPurpose));
         await calcBody.click(this.machineClass);
-        await calcBody.click(this.selectmachineClass(this.machineClassList.regular));
-        await calcBody.click();
+        await calcBody.click(this.selectFromDropDown("machineClass",this.machineClassList.preemptible));
         console.log("test");
 
     }
